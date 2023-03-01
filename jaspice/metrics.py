@@ -7,7 +7,7 @@ from jaspice.wordnet import JaWordNet
 
 
 class JaSPICE:
-    def __init__(self, lparser: Optional[LangParser]=None, verbose: bool=False):
+    def __init__(self, lparser: Optional[LangParser] = None, verbose: bool = False):
         """
         Args:
             lparser (Optional[LangParser], optional): LangParser. Defaults to None.
@@ -45,7 +45,7 @@ class JaSPICE:
             print("JaSPICE:", F, "\n\n\n")
         return F
 
-    def _get_tuple_sets(self, cand_graph: SceneGraph, ref_graphs: List[SceneGraph])-> Tuple[Set[str],Set[str]]:
+    def _get_tuple_sets(self, cand_graph: SceneGraph, ref_graphs: List[SceneGraph]) -> Tuple[Set[str], Set[str]]:
         """
         Convert scene graphs to tuple sets
 
@@ -68,7 +68,7 @@ class JaSPICE:
             print(f"cand: {cand_set}\nref: {ref_set}")
         return cand_set, ref_set
 
-    def _delete_zero_pronoun(self,tuple_set: Set[str])-> Set[str]:
+    def _delete_zero_pronoun(self, tuple_set: Set[str]) -> Set[str]:
         """
         delete zero pronouns
 
@@ -111,7 +111,7 @@ class JaSPICE:
 
         return float(cnt)
 
-    def _get_synonyms(self, query: str)-> List[str]:
+    def _get_synonyms(self, query: str) -> List[str]:
         """
         get synonyms
 
@@ -125,7 +125,7 @@ class JaSPICE:
             self.wordnet = JaWordNet()
         return self.wordnet.get_synonyms(query)
 
-    def _compute_F(self, precision: float, recall: float)-> float:
+    def _compute_F(self, precision: float, recall: float) -> float:
         """
         compute F score
 
@@ -142,7 +142,7 @@ class JaSPICE:
 
 
 class BatchJaSPICE():
-    def __init__(self, size: int=8, num_cpus: Optional[int]=None):
+    def __init__(self, size: int = 8, num_cpus: Optional[int] = None):
         """
         Args:
             size (int, optional): batch size. Defaults to 8.

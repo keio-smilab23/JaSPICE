@@ -26,24 +26,22 @@ class ServerKNP(KNP):
         super().__init__(command, server, port, timeout, option, rcfile, pattern, jumancommand, jumanrcfile, jumanoption, jumanpp, multithreading)
         self._open_server(port)
         self.analyzer = SocketAnalyzer(backend='socket', timeout=timeout, server=server, port=port,
-                                 socket_option=b'RUN -tab -normal\n')
+                                       socket_option=b'RUN -tab -normal\n')
 
     def _open_server(self, knp_port):
         try:
             proc = subprocess.Popen(f"knp -tab -S -N {knp_port}".split(" "))
             import time
             time.sleep(1)
-        except:
+        except BaseException:
             proc = None
-        
-        self.proc = proc
 
+        self.proc = proc
 
     def __del__(self):
         if self.proc is not None:
             self.proc.terminate()
             print("del")
-
 
 
 class PexpectKNP(KNP):
@@ -111,7 +109,7 @@ class Socket(object):
         try:
             self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.sock.connect((hostname, port))
-        except:
+        except BaseException:
             raise
         if option is not None:
             self.sock.send(option)
@@ -128,7 +126,7 @@ class Socket(object):
         try:
             s = x.decode('utf-8')
             return s
-        except:
+        except BaseException:
             return ""
 
     def query(self, sentence, pattern):

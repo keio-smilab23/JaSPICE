@@ -1,12 +1,11 @@
 import heapq
 from dataclasses import dataclass
-from enum import unique
-from operator import inv
 from typing import Any, List, Optional
-from jaspice.lang_parser import *
+from jaspice.lang_parser import LangParser, ParsedLang
 
 DEBUG = False
 ZEROP = "[PHI]"
+
 
 @dataclass
 class SceneNode:
@@ -37,7 +36,8 @@ class SceneGraph:
     """
     Scene Graph is a directed acyclic graph that represents relationships between objects, attributes, and actions in a scene.
     """
-    def __init__(self,zero_pronoun=True):
+
+    def __init__(self, zero_pronoun=True):
         """
         Initializes a SceneGraph instance.
 
@@ -106,7 +106,7 @@ class SceneGraph:
         self._complement_nsubj()
         if self.consider_zerop:
             self._complement_zerop()
-        
+
         self.has_build = True
 
     def _complement_zerop(self):
@@ -132,7 +132,6 @@ class SceneGraph:
             self.edges.setdefault(node_id, [])
             self.inv_edges.setdefault(node_id, [])
             o_deg = len(self.edges[node_id])
-            i_deg = len(self.inv_edges[node_id])
             if self.nodes[node_id].pos == "NP":
                 self.nodes[node_id].kind = "object"
             else:
@@ -159,7 +158,7 @@ class SceneGraph:
                             self.add_edge(nsubj, node.id)
                             break
 
-    def search_nodes(self, text: str)-> List[int]:
+    def search_nodes(self, text: str) -> List[int]:
         """
         Search for nodes in the graph by text.
 
@@ -174,7 +173,7 @@ class SceneGraph:
 
         return self.node_map[text]
 
-    def get_nsubj_node(self, text: str, allow_direct: bool=True)-> int:
+    def get_nsubj_node(self, text: str, allow_direct: bool = True) -> int:
         """
         Get the subject node for the given text.
 
@@ -215,10 +214,10 @@ class SceneGraph:
 
         return cand[-1]
 
-    def get_connected_noun_nodes(self, target_id: int, direction: str="in")-> int:
+    def get_connected_noun_nodes(self, target_id: int, direction: str = "in") -> int:
         """
         Get the connected noun node for the given node.
-        
+
         Artgs:
         target_id (int): The ID of the target node.
         direction (str): The direction of the edge. Defaults to "in".
@@ -234,7 +233,7 @@ class SceneGraph:
                 return node_id
         return -1
 
-    def inherit_inedge(self, src: int, dst: int)-> bool:
+    def inherit_inedge(self, src: int, dst: int) -> bool:
         """
         Inherit the inedge nodes for the given nodes.
 
@@ -309,7 +308,7 @@ class SceneGraph:
                     res.append(rel)
         return res
 
-    def get_graph_tuple(self)-> List[str]:
+    def get_graph_tuple(self) -> List[str]:
         """
         Get the graph tuple.
 
@@ -325,7 +324,7 @@ class SceneGraph:
             res.extend(t)
         return res
 
-    def print(self, word: bool=True):
+    def print(self, word: bool = True):
         """
         Print the graph.
 
@@ -403,7 +402,7 @@ class SceneGraph:
                 color = "#bfefff"
             elif src.kind == "attribute":
                 color = "#a8dda8"
-            dg.node(str(src_id), src.word.replace(ZEROP,"φ"), style='filled', fillcolor=color, fontcolor='black')
+            dg.node(str(src_id), src.word.replace(ZEROP, "φ"), style='filled', fillcolor=color, fontcolor='black')
             for dst_id in self.edges[src_id]:
                 if src.kind != self.nodes[dst_id].kind:
                     dg.edge(str(src_id), str(dst_id))
@@ -414,7 +413,8 @@ class JaSceneGraphParser:
     """
     Scene graph parser for Japanese language.
     """
-    def __init__(self, lparser: Optional[LangParser]=None, verbose: bool=False) -> None:
+
+    def __init__(self, lparser: Optional[LangParser] = None, verbose: bool = False) -> None:
         """
         Initializes a new instance of JaSceneGraphParser.
 
@@ -425,7 +425,7 @@ class JaSceneGraphParser:
         self.ja_parser = lparser or LangParser(verbose=verbose)
         self.verbose = verbose
         # self.loc_table = ["上", "下", "前", "後ろ", "右", "左", "中", "外", "隣", "近く", "間", "上部", "下部"]
-        self.loc_table = ["上", "下", "前", "後ろ", "右", "左", "中", "外", "隣", "近く", "間", "上部", "下部","右下","右上","左下","左上"]
+        self.loc_table = ["上", "下", "前", "後ろ", "右", "左", "中", "外", "隣", "近く", "間", "上部", "下部", "右下", "右上", "左下", "左上"]
         self.attr_categories = ["動物-部位", "植物-部位", "場所-施設部位", "形・模様", "色", "数量", "時間"]
 
     def _parse(self, graph: SceneGraph, lparsed: ParsedLang):
@@ -573,7 +573,7 @@ class JaSceneGraphParser:
                     node2 = graph.add_node(parent.text, parent.text, "NP")
                     graph.inherit_inedge(node1, node2)
 
-    def run(self, text: str)-> SceneGraph:
+    def run(self, text: str) -> SceneGraph:
         """
         Run parser.
 
