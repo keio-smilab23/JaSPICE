@@ -1,4 +1,4 @@
-# JaSPICE - Japanese SPICE
+# JaSPICE: Automatic Evaluation Metric Using Predicate-Argument Structures for Image Captioning Models
 
 Evaluation code for machine-generated image captions in Japanese.
 
@@ -10,6 +10,12 @@ This code also implemented a scene-graph parser for Japanese.
 ## Instructions (using Docker)
 
 ### Clone & Install
+
+```
+pip install jaspice
+```
+
+or
 
 ```
 git clone git@github.com:keio-smilab23/JaSPICE.git
@@ -58,13 +64,13 @@ pip install -e .
 
 ```
 # JUMAN++
-wget 'http://nlp.ist.i.kyoto-u.ac.jp/DLcounter/lime.cgi?down=http://lotus.kuee.kyoto-u.ac.jp/nl-resource/jumanpp/jumanpp-1.02.tar.xz&name=jumanpp-1.02.tar.xz' 
+wget 'https://github.com/keio-smilab23/JaSPICE/releases/download/0.0.1/jumanpp.tar.xz'
 
 # JUMAN
-wget 'http://nlp.ist.i.kyoto-u.ac.jp/nl-resource/juman/juman-7.01.tar.bz2' -O /tmp/juman.tar.bz2 
+wget 'https://github.com/keio-smilab23/JaSPICE/releases/download/0.0.1/juman.tar.bz2'
 
 # KNP
-wget 'https://nlp.ist.i.kyoto-u.ac.jp/DLcounter/lime.cgi?down=https://nlp.ist.i.kyoto-u.ac.jp/nl-resource/knp/knp-4.20.tar.bz2&name=knp-4.20.tar.bz2'
+wget 'https://github.com/keio-smilab23/JaSPICE/releases/download/0.0.1/knp.tar.bz2'
 ```
 
 ## Usage
@@ -97,3 +103,12 @@ _, score = jaspice.compute_score(references, candidates)
 }
 ```
 
+## Others
+
+### Licenses
+
+This work is licensed under the BSD-3-Clause-Clear license. To view a copy of this license, see [LICENSE](LICENSE).
+
+- [JUMAN](https://github.com/keio-smilab23/JaSPICE/releases/download/0.0.1/JUMAN_COPYING.txt)
+- [JUMANPP](https://github.com/keio-smilab23/JaSPICE/releases/download/0.0.1/JUMANPP_LICENSE.txt)
+- [KNP](https://github.com/keio-smilab23/JaSPICE/releases/download/0.0.1/KNP_COPYING.txt)
