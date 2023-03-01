@@ -24,7 +24,7 @@ RUN apt-get upgrade -y --fix-missing &&\
     apt-get install -y --fix-missing libgoogle-perftools-dev
 
 # JUMANPP
-RUN wget 'http://nlp.ist.i.kyoto-u.ac.jp/DLcounter/lime.cgi?down=http://lotus.kuee.kyoto-u.ac.jp/nl-resource/jumanpp/jumanpp-1.02.tar.xz&name=jumanpp-1.02.tar.xz' -O /tmp/jumanpp.tar.xz &&\
+RUN wget 'https://github.com/keio-smilab23/JaSPICE/releases/download/0.0.1/jumanpp.tar.xz' -O /tmp/jumanpp.tar.xz &&\
     tar xJvf /tmp/jumanpp.tar.xz -C /tmp &&\
     cd /tmp/jumanpp-1.02 &&\
     cat src/Makefile.am | sed s/-m64//g > Makefile.am.new && mv Makefile.am.new src/Makefile.am &&\
@@ -34,7 +34,7 @@ RUN wget 'http://nlp.ist.i.kyoto-u.ac.jp/DLcounter/lime.cgi?down=http://lotus.ku
     rm -rf /var/cache/apk/*
 
 # JUMAN
-RUN wget 'http://nlp.ist.i.kyoto-u.ac.jp/nl-resource/juman/juman-7.01.tar.bz2' -O /tmp/juman.tar.bz2 &&\ 
+RUN wget 'https://github.com/keio-smilab23/JaSPICE/releases/download/0.0.1/juman.tar.bz2' -O /tmp/juman.tar.bz2 &&\ 
     tar xf /tmp/juman.tar.bz2 -C /tmp &&\
     cd /tmp/juman-7.01 &&\ 
     ./configure --prefix=/usr/local/ --build=arm && make && make install &&\
@@ -45,7 +45,7 @@ RUN wget 'http://nlp.ist.i.kyoto-u.ac.jp/nl-resource/juman/juman-7.01.tar.bz2' -
 # KNP
 RUN apt-get install -y --fix-missing zlib1g-dev &&\
     echo "download knp ..." &&\
-    wget 'https://nlp.ist.i.kyoto-u.ac.jp/DLcounter/lime.cgi?down=https://nlp.ist.i.kyoto-u.ac.jp/nl-resource/knp/knp-4.20.tar.bz2&name=knp-4.20.tar.bz2' -O /tmp/knp.tar.bz2 &&\
+    wget 'https://github.com/keio-smilab23/JaSPICE/releases/download/0.0.1/knp.tar.bz2' -O /tmp/knp.tar.bz2 &&\
     tar xf /tmp/knp.tar.bz2 -C /tmp &&\
     cd /tmp/knp-4.20 / &&\
     ./configure --prefix=/usr/local/ --with-juman-prefix=/usr/local/ --build=arm && make && make install &&\
