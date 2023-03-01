@@ -7,7 +7,7 @@ COPY ./ /root/jaspice
 
 RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
-RUN cd /root/jaspice && pip install -e . 
+RUN cd /root/jaspice && pip install -e .
 
 RUN apt-get update --fix-missing &&\
     apt-get install -y --fix-missing apt-utils dialog &&\
@@ -34,9 +34,9 @@ RUN wget 'https://github.com/keio-smilab23/JaSPICE/releases/download/0.0.1/juman
     rm -rf /var/cache/apk/*
 
 # JUMAN
-RUN wget 'https://github.com/keio-smilab23/JaSPICE/releases/download/0.0.1/juman.tar.bz2' -O /tmp/juman.tar.bz2 &&\ 
+RUN wget 'https://github.com/keio-smilab23/JaSPICE/releases/download/0.0.1/juman.tar.bz2' -O /tmp/juman.tar.bz2 &&\
     tar xf /tmp/juman.tar.bz2 -C /tmp &&\
-    cd /tmp/juman-7.01 &&\ 
+    cd /tmp/juman-7.01 &&\
     ./configure --prefix=/usr/local/ --build=arm && make && make install &&\
     rm -rf /tmp/* &&\
     rm -rf /var/cache/apk/* &&\
@@ -58,7 +58,7 @@ RUN apt-get clean &&\
     apt-get autoremove -y &&\
     apt-get clean &&\
     rm -rf /tmp/* /var/tmp/* &&\
-    rm -rf /var/lib/apt/lists/* &&\    
+    rm -rf /var/lib/apt/lists/* &&\
     rm -f /etc/ssh/ssh_host_*
 
 CMD /bin/bash
