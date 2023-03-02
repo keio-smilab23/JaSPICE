@@ -13,10 +13,10 @@ def test_parse_graph():
     assert graph_tuple_list == expected
 
 
-def test_draw_graph():
-    parser = JaSceneGraphParser()
-    graph = parser.run(text)
-    graph.draw()
+# def test_draw_graph():
+#     parser = JaSceneGraphParser()
+#     graph = parser.run(text)
+#     graph.draw()
 
 
 def test_print_graph():

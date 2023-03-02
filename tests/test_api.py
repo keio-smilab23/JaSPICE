@@ -13,7 +13,7 @@ def test_compute_score():
     ref["2"] = ['黒いウェアの人がスノーボードで大きくジャンプしている', '雪の上をスノーボードでジャンプしてる人', 'スノーボーダーが大きくジャンプをした瞬間', '雪山に太陽がさんさんと輝き、スノーボーダーが空を飛んでいる', 'スノーボードでジャンプしている']
     cap["2"] = ['スノーボードでジャンプする少年']
 
-    jaspice = JaSPICE()
+    jaspice = JaSPICE(server_mode=False)
     score, scores = jaspice.compute_score(ref, cap)
     assert len(scores) == 3
     assert score == pytest.approx(0.108, 1e-2)
