@@ -1,4 +1,6 @@
 # JaSPICE: Automatic Evaluation Metric Using Predicate-Argument Structures for Image Captioning Models
+[![Lint](https://github.com/keio-smilab23/JaSPICE/actions/workflows/lint.yaml/badge.svg)](https://github.com/keio-smilab23/JaSPICE/actions/workflows/lint.yaml)
+[![Test](https://github.com/keio-smilab23/JaSPICE/actions/workflows/test.yaml/badge.svg)](https://github.com/keio-smilab23/JaSPICE/actions/workflows/test.yaml)
 
 Evaluation code for machine-generated image captions in Japanese.
 
