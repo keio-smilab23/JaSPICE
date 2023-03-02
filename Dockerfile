@@ -52,6 +52,11 @@ RUN apt-get install -y --fix-missing zlib1g-dev &&\
     rm -rf /tmp/* &&\
     rm -rf /var/cache/apk/*
 
+# WordNet
+RUN wget "https://github.com/bond-lab/wnja/releases/download/v1.1/wnjpn.db.gz" -O /tmp/wnjpn.db.gz &&\
+    gzip -d /tmp/wnjpn.db.gz &&\
+    mv /tmp/wnjpn.db /root &&\
+    rm -rf /tmp/*
 
 RUN apt-get clean &&\
     apt-get autoclean -y &&\
