@@ -355,6 +355,7 @@ class SceneGraph:
         def nudge(pos, x_shift, y_shift):
             return {n: (x + x_shift, y + y_shift) for n, (x, y) in pos.items()}
 
+        self.build()
         dg = nx.DiGraph()
         obj, rel, attr = [], [], []
         for src_id in range(len(self.nodes)):
