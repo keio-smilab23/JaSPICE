@@ -1,4 +1,4 @@
-# JaSPICE: Automatic Evaluation Metric Using Predicate-Argument Structures for Image Captioning Models
+# [CoNLL23] JaSPICE: Automatic Evaluation Metric Using Predicate-Argument Structures for Image Captioning Models
 [![Lint](https://github.com/keio-smilab23/JaSPICE/actions/workflows/lint.yaml/badge.svg)](https://github.com/keio-smilab23/JaSPICE/actions/workflows/lint.yaml)
 [![Test](https://github.com/keio-smilab23/JaSPICE/actions/workflows/test.yaml/badge.svg)](https://github.com/keio-smilab23/JaSPICE/actions/workflows/test.yaml)
 
@@ -97,11 +97,11 @@ _, score = jaspice.compute_score(references, candidates)
 ## BibTex
 
 ```
-@InProceedings{jaspice,
-    title     = {JaSPICE: 日本語における述語項構造に基づく画像キャプション生成モデルの自動評価尺度},
-    author = {和田唯我 and 兼田寛大 and 杉浦孔明},
-    year      = {2023},
-    booktitle = {言語処理学会第29回年次大会}
+@inproceedings{wada2023,
+   title     = {{JaSPICE: Automatic Evaluation Metric Using Predicate-Argument Structures for Image Captioning Models}},
+   author    = {Wada, Yuiga  and Kaneda, Kanta  and Sugiura, Komei},
+   year      = 2023,
+   booktitle = {Proceedings of the 27th Conference on Computational Natural Language Learning (CoNLL)}
 }
 ```
 
